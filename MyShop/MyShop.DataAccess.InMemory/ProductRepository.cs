@@ -15,9 +15,9 @@ namespace MyShop.DataAccess.InMemory
         ObjectCache cache = MemoryCache.Default;
         List<Product> products = new List<Product>();
 
-        ProductRepository()
+        public ProductRepository()
         {
-            products = (List<Product>)cache["produsts"];
+            products = (List<Product>)cache["products"];
             if (products == null)
             {
                 products = new List<Product>();
@@ -34,9 +34,9 @@ namespace MyShop.DataAccess.InMemory
             products.Add(product);
         }
 
-        public void Update(Product product)
+        public void Update(Product product, string Id)
         {
-            Product productToUpdate = products.Find(p => p.Id == product.Id);
+            Product productToUpdate = products.Find(p => p.Id == Id);
             if (productToUpdate != null)
             {
                 productToUpdate.Name = product.Name;
@@ -47,18 +47,18 @@ namespace MyShop.DataAccess.InMemory
             }
         }
 
-        public void Delete(Product product)
+        public void Delete(string Id)
         {
-            Product productToDelete = products.Find(p => p.Id == product.Id);
+            Product productToDelete = products.Find(p => p.Id == Id);
             if (productToDelete != null)
             {
                 products.Remove(productToDelete);
             }
         }
 
-        public Product Find(Product product)
+        public Product Find(string Id)
         {
-            Product productToFind = products.Find(p => p.Id == product.Id);
+            Product productToFind = products.Find(p => p.Id == Id);
             if (productToFind != null)
             {
                 return productToFind;
