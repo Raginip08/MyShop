@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class ProductCategory : Base
+    public abstract class Base
     {
-        
-        public string Category { get; set; }
+        public string Id { get; set; }
+        public DateTime createdAt { get; set; }
 
-        public ProductCategory()
+        public Base()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.createdAt = DateTime.Now;
         }
     }
 }
