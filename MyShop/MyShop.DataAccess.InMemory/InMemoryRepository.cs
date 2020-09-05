@@ -8,7 +8,7 @@ using MyShop.Core.Models;
 
 namespace MyShop.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T: Base
+    public class InMemoryRepository<T> : IInMemoryRepository<T> where T : Base
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -39,7 +39,7 @@ namespace MyShop.DataAccess.InMemory
             T productToUpdate = items.Find(p => p.Id == Id);
             if (productToUpdate != null)
             {
-                productToUpdate=t;
+                productToUpdate = t;
             }
         }
 
@@ -61,7 +61,7 @@ namespace MyShop.DataAccess.InMemory
             }
             else
             {
-                throw new Exception();  
+                throw new Exception();
             }
         }
 
